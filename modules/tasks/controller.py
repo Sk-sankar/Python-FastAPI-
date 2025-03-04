@@ -9,12 +9,10 @@ router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
 @router.post("/", response_model=TaskResponse)
 def create_task(task: TaskCreate, db: Session = Depends(get_db)):
-    """Create a new task for a user"""
     return TaskService.create_task(db, task)
 
 @router.get("/{task_id}", response_model=TaskResponse)
 def get_task(task_id: UUID, db: Session = Depends(get_db)):
-    """Fetch a task by ID"""
     task = TaskService.get_task(db, task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
@@ -22,7 +20,6 @@ def get_task(task_id: UUID, db: Session = Depends(get_db)):
 
 @router.get("/user/{user_id}", response_model=list[TaskResponse])
 def get_tasks_by_user(user_id: UUID, db: Session = Depends(get_db)):
-    """Fetch all tasks for a specific user"""
     return TaskService.get_tasks_by_user(db, user_id)
 
 @router.put("/{task_id}", response_model=TaskResponse)
