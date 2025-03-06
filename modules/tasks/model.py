@@ -18,3 +18,5 @@ class Task(TaskBase, table=True):
     updated_at: datetime = Field(default_factory=generate_timestamp)
 
     user: User = Relationship(back_populates="tasks")
+    
+    

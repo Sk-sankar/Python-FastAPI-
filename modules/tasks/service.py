@@ -7,7 +7,6 @@ class TaskService:
     
     @staticmethod
     def create_task(db: Session, task_data: TaskCreate):
-        """Create a new task"""
         task = Task(**task_data.dict())
         db.add(task)
         db.commit()
@@ -16,17 +15,15 @@ class TaskService:
 
     @staticmethod
     def get_task(db: Session, task_id: UUID):
-        """Fetch a task by ID"""
         return db.exec(select(Task).where(Task.id == task_id)).first()
 
     @staticmethod
     def get_tasks_by_user(db: Session, user_id: UUID):
-        """Fetch all tasks for a given user"""
+
         return db.exec(select(Task).where(Task.user_id == user_id)).all()
 
     @staticmethod
     def update_task(db: Session, task_id: UUID, task_update: TaskUpdate):
-        """Update an existing task"""
         task = db.exec(select(Task).where(Task.id == task_id)).first()
         if not task:
             return None
