@@ -1,6 +1,6 @@
 from .model import User
-from sqlmodel import select
-from util.database import Session,engine
+from sqlmodel import select,Session
+from util.database import engine
 from .schema import UserCreate
 
 class UserService:
