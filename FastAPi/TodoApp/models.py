@@ -1,6 +1,7 @@
     
 from sqlalchemy import Column, Integer, String, Boolean,ForeignKey
 from database import Base
+from sqlalchemy.orm import relationship
 
 class Users(Base):
     __tablename__="Users"
@@ -25,3 +26,5 @@ class Todos(Base):
     priority=Column(Integer)
     complete = Column(Boolean, default=False)
     Owner_id=Column(Integer,ForeignKey("Users.id"))
+    
+    Owner=relationship("Users")

@@ -15,3 +15,11 @@ class createUserRequest(BaseModel):
     password:str
     role:str
     
+    
+class token(BaseModel):
+    access_token:str
+    token_type:str
+    
+class userverfication(BaseModel):
+    password:str
+    new_password:str=Field(min_length=6)
